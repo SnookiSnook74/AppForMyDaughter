@@ -7,34 +7,17 @@
 
 import Foundation
 
-/// Структура для хранения истории собщений
-struct History {
-    let role: String
-    let content: String
-}
-
-/// Структура для декодирования ответа от OpenAI
-struct OpenAIResponse: Codable {
-    let choices: [Choice]
-    
-    struct Choice: Codable {
-        let message: Message
-        
-        struct Message: Codable {
-            let role: String
-            let content: String
-        }
-    }
-}
-
 /// Протокол для сервиса сообщений OpenAI
 protocol OpenAIServiceProtocol {
     
     /// Отправка не стриминоговых сообщений
     func sendMessage(text: String) async throws -> String
+    
+    /// Отправка сообщений в режиме стриминга
+    func sendMessageWithStream(text: String) async throws -> AsyncThrowingStream<String, Error>
 }
 
-class OpenAIService: OpenAIServiceProtocol {
+class OpenAIChatService: OpenAIServiceProtocol {
     
     private let systemMessage: String
     private let model: String
@@ -93,10 +76,60 @@ class OpenAIService: OpenAIServiceProtocol {
             throw OpenAIServiceError.serializationError(error.localizedDescription)
         }
     }
+    
+    func sendMessageWithStream(text: String) async throws -> AsyncThrowingStream<String, Error> {
+        var request = urlRequest
+        
+        historyList.append(History(role: "user", content: text))
+        
+        let requestBody: [String: Any] = [
+            "model": model,
+            "messages": historyList.map { ["role": $0.role, "content": $0.content] },
+            "stream": true
+        ]
+        
+        request.httpBody = try JSONSerialization.data(withJSONObject: requestBody)
+        
+        let (result, response) = try await urlSession.bytes(for: request)
+        
+        guard let httpResponse = response as? HTTPURLResponse else {
+            throw OpenAIServiceError.httpResponseError(-1)
+        }
+        
+        guard 200...299 ~= httpResponse.statusCode else {
+            var errorText = ""
+            for try await line in result.lines {
+                errorText += line
+            }
+            throw OpenAIServiceError.httpResponseError(httpResponse.statusCode)
+        }
+        
+        return AsyncThrowingStream { continuation in
+            Task {
+                do {
+                    var responseText = ""
+                    for try await line in result.lines {
+                        if line.hasPrefix("data: "),
+                           let data = line.dropFirst(6).data(using: .utf8),
+                           let decodeData = try? JSONDecoder().decode(ChatCompletionChunk.self, from: data),
+                           let text = decodeData.choices.first?.delta.content
+                        {
+                            responseText += text
+                            continuation.yield(text)
+                        }
+                    }
+                    historyList.append(History(role: "assistent", content: responseText))
+                    continuation.finish()
+                } catch {
+                    continuation.finish(throwing: error)
+                }
+            }
+        }
+    }
 }
 
 /// Обработка ошибок сервиса
-extension OpenAIService {
+extension OpenAIChatService {
     
     enum OpenAIServiceError: LocalizedError, CustomStringConvertible {
         case serializationError(String)
