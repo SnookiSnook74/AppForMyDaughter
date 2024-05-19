@@ -13,7 +13,7 @@ class StartViewController: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = .green
         
-        CoreDataManager.shared.addMessages(text: "Hello", sender: "user")
+        CoreDataManager.shared.addMessage(text: "Hello", sender: "user")
     }
 
 
