@@ -16,6 +16,8 @@
 		6B06E8162BF9704E0059ACB0 /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B06E8152BF9704E0059ACB0 /* CoreDataManager.swift */; };
 		6B06E81A2BF971ED0059ACB0 /* Messages+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B06E8182BF971ED0059ACB0 /* Messages+CoreDataProperties.swift */; };
 		6B06E8292BF9DAF20059ACB0 /* CoreDataManagerTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B06E8282BF9DAF20059ACB0 /* CoreDataManagerTest.swift */; };
+		6B06E82E2BF9EEEF0059ACB0 /* OpenAIChatService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B06E82D2BF9EEEF0059ACB0 /* OpenAIChatService.swift */; };
+		6BABB2472BFA3F95000AE01E /* OpenAIChatServiceModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BABB2462BFA3F95000AE01E /* OpenAIChatServiceModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -41,6 +43,8 @@
 		6B06E8182BF971ED0059ACB0 /* Messages+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Messages+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		6B06E81F2BF975F00059ACB0 /* AppTest.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AppTest.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		6B06E8282BF9DAF20059ACB0 /* CoreDataManagerTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManagerTest.swift; sourceTree = "<group>"; };
+		6B06E82D2BF9EEEF0059ACB0 /* OpenAIChatService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenAIChatService.swift; sourceTree = "<group>"; };
+		6BABB2462BFA3F95000AE01E /* OpenAIChatServiceModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenAIChatServiceModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -81,6 +85,7 @@
 		6B06E7F92BF967B20059ACB0 /* AppForMyDaughter */ = {
 			isa = PBXGroup;
 			children = (
+				6B06E82C2BF9EEAA0059ACB0 /* Service */,
 				6B06E8102BF96D9C0059ACB0 /* Presenter */,
 				6B06E8142BF9703F0059ACB0 /* Data */,
 				6B06E80F2BF96D680059ACB0 /* AppSetting */,
@@ -133,6 +138,23 @@
 				6B06E8282BF9DAF20059ACB0 /* CoreDataManagerTest.swift */,
 			);
 			path = AppTest;
+			sourceTree = "<group>";
+		};
+		6B06E82C2BF9EEAA0059ACB0 /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				6BABB2452BFA3F51000AE01E /* OpenAIChatService */,
+			);
+			path = Service;
+			sourceTree = "<group>";
+		};
+		6BABB2452BFA3F51000AE01E /* OpenAIChatService */ = {
+			isa = PBXGroup;
+			children = (
+				6B06E82D2BF9EEEF0059ACB0 /* OpenAIChatService.swift */,
+				6BABB2462BFA3F95000AE01E /* OpenAIChatServiceModel.swift */,
+			);
+			path = OpenAIChatService;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -236,9 +258,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				6B06E7FF2BF967B20059ACB0 /* StartViewController.swift in Sources */,
+				6B06E82E2BF9EEEF0059ACB0 /* OpenAIChatService.swift in Sources */,
 				6B06E7FB2BF967B20059ACB0 /* AppDelegate.swift in Sources */,
 				6B06E8132BF96E690059ACB0 /* CoreDataModel.xcdatamodeld in Sources */,
 				6B06E8162BF9704E0059ACB0 /* CoreDataManager.swift in Sources */,
+				6BABB2472BFA3F95000AE01E /* OpenAIChatServiceModel.swift in Sources */,
 				6B06E81A2BF971ED0059ACB0 /* Messages+CoreDataProperties.swift in Sources */,
 				6B06E7FD2BF967B20059ACB0 /* SceneDelegate.swift in Sources */,
 			);
