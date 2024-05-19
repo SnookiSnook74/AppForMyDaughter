@@ -7,6 +7,7 @@
 
 import Foundation
 
+
 /// Протокол для сервиса сообщений OpenAI
 protocol OpenAIServiceProtocol {
     
@@ -23,7 +24,7 @@ class OpenAIChatService: OpenAIServiceProtocol {
     private let model: String
     private let apiKey: String
     
-    private let urlSession = URLSession.shared
+    var urlSession = URLSession.shared
     private var historyList:[History]
     
     var urlRequest: URLRequest {
