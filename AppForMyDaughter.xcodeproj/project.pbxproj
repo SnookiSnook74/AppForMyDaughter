@@ -15,7 +15,18 @@
 		6B06E8132BF96E690059ACB0 /* CoreDataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 6B06E8112BF96E690059ACB0 /* CoreDataModel.xcdatamodeld */; };
 		6B06E8162BF9704E0059ACB0 /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B06E8152BF9704E0059ACB0 /* CoreDataManager.swift */; };
 		6B06E81A2BF971ED0059ACB0 /* Messages+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B06E8182BF971ED0059ACB0 /* Messages+CoreDataProperties.swift */; };
+		6B06E8292BF9DAF20059ACB0 /* CoreDataManagerTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B06E8282BF9DAF20059ACB0 /* CoreDataManagerTest.swift */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		6B06E8232BF975F10059ACB0 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 6B06E7EF2BF967B20059ACB0 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 6B06E7F62BF967B20059ACB0;
+			remoteInfo = AppForMyDaughter;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		6B06E7F72BF967B20059ACB0 /* AppForMyDaughter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AppForMyDaughter.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -28,10 +39,19 @@
 		6B06E8122BF96E690059ACB0 /* CoreDataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = CoreDataModel.xcdatamodel; sourceTree = "<group>"; };
 		6B06E8152BF9704E0059ACB0 /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
 		6B06E8182BF971ED0059ACB0 /* Messages+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Messages+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		6B06E81F2BF975F00059ACB0 /* AppTest.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AppTest.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		6B06E8282BF9DAF20059ACB0 /* CoreDataManagerTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManagerTest.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		6B06E7F42BF967B20059ACB0 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		6B06E81C2BF975F00059ACB0 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -53,6 +73,7 @@
 			isa = PBXGroup;
 			children = (
 				6B06E7F72BF967B20059ACB0 /* AppForMyDaughter.app */,
+				6B06E81F2BF975F00059ACB0 /* AppTest.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -60,10 +81,11 @@
 		6B06E7F92BF967B20059ACB0 /* AppForMyDaughter */ = {
 			isa = PBXGroup;
 			children = (
-				6B06E8142BF9703F0059ACB0 /* Data */,
 				6B06E8102BF96D9C0059ACB0 /* Presenter */,
+				6B06E8142BF9703F0059ACB0 /* Data */,
 				6B06E80F2BF96D680059ACB0 /* AppSetting */,
 				6B06E80E2BF96B750059ACB0 /* Other */,
+				6B06E8202BF975F10059ACB0 /* AppTest */,
 				6B06E8112BF96E690059ACB0 /* CoreDataModel.xcdatamodeld */,
 			);
 			path = AppForMyDaughter;
@@ -105,6 +127,14 @@
 			path = Data;
 			sourceTree = "<group>";
 		};
+		6B06E8202BF975F10059ACB0 /* AppTest */ = {
+			isa = PBXGroup;
+			children = (
+				6B06E8282BF9DAF20059ACB0 /* CoreDataManagerTest.swift */,
+			);
+			path = AppTest;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -125,6 +155,24 @@
 			productReference = 6B06E7F72BF967B20059ACB0 /* AppForMyDaughter.app */;
 			productType = "com.apple.product-type.application";
 		};
+		6B06E81E2BF975F00059ACB0 /* AppTest */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 6B06E8252BF975F10059ACB0 /* Build configuration list for PBXNativeTarget "AppTest" */;
+			buildPhases = (
+				6B06E81B2BF975F00059ACB0 /* Sources */,
+				6B06E81C2BF975F00059ACB0 /* Frameworks */,
+				6B06E81D2BF975F00059ACB0 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				6B06E8242BF975F10059ACB0 /* PBXTargetDependency */,
+			);
+			name = AppTest;
+			productName = AppTest;
+			productReference = 6B06E81F2BF975F00059ACB0 /* AppTest.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -137,6 +185,10 @@
 				TargetAttributes = {
 					6B06E7F62BF967B20059ACB0 = {
 						CreatedOnToolsVersion = 15.4;
+					};
+					6B06E81E2BF975F00059ACB0 = {
+						CreatedOnToolsVersion = 15.4;
+						TestTargetID = 6B06E7F62BF967B20059ACB0;
 					};
 				};
 			};
@@ -154,6 +206,7 @@
 			projectRoot = "";
 			targets = (
 				6B06E7F62BF967B20059ACB0 /* AppForMyDaughter */,
+				6B06E81E2BF975F00059ACB0 /* AppTest */,
 			);
 		};
 /* End PBXProject section */
@@ -165,6 +218,13 @@
 			files = (
 				6B06E8042BF967B40059ACB0 /* Assets.xcassets in Resources */,
 				6B06E8072BF967B40059ACB0 /* Base in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		6B06E81D2BF975F00059ACB0 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -184,7 +244,23 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		6B06E81B2BF975F00059ACB0 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6B06E8292BF9DAF20059ACB0 /* CoreDataManagerTest.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		6B06E8242BF975F10059ACB0 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 6B06E7F62BF967B20059ACB0 /* AppForMyDaughter */;
+			targetProxy = 6B06E8232BF975F10059ACB0 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		6B06E8052BF967B40059ACB0 /* LaunchScreen.storyboard */ = {
@@ -379,6 +455,42 @@
 			};
 			name = Release;
 		};
+		6B06E8262BF975F10059ACB0 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = YC6QRM4PC2;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = emerosro.AppTest;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/AppForMyDaughter.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/AppForMyDaughter";
+			};
+			name = Debug;
+		};
+		6B06E8272BF975F10059ACB0 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = YC6QRM4PC2;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = emerosro.AppTest;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/AppForMyDaughter.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/AppForMyDaughter";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -400,6 +512,15 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
+		6B06E8252BF975F10059ACB0 /* Build configuration list for PBXNativeTarget "AppTest" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6B06E8262BF975F10059ACB0 /* Debug */,
+				6B06E8272BF975F10059ACB0 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 /* End XCConfigurationList section */
 
 /* Begin XCVersionGroup section */
@@ -409,8 +530,7 @@
 				6B06E8122BF96E690059ACB0 /* CoreDataModel.xcdatamodel */,
 			);
 			currentVersion = 6B06E8122BF96E690059ACB0 /* CoreDataModel.xcdatamodel */;
-			name = CoreDataModel.xcdatamodeld;
-			path = /Users/donhalab/Desktop/AppForMyDaughter/AppForMyDaughter/CoreDataModel.xcdatamodeld;
+			path = CoreDataModel.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
 		};

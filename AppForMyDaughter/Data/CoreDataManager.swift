@@ -20,7 +20,6 @@ class CoreDataManager {
             if let error = error as NSError? {
                 fatalError("Ошибка persistentContainer")
             }
-            print(storeDesctiption.url)
         }
         return container
     }()
@@ -43,7 +42,7 @@ class CoreDataManager {
     }
     
     /// Добавление сообщения в базу
-    func addMessages(text: String, sender: String) {
+    func addMessage(text: String, sender: String) {
         let context = self.context
         let message = Messages(context: context)
         
@@ -54,7 +53,7 @@ class CoreDataManager {
     }
     
     /// Отчистка базы
-    func deleteAllMesseges() {
+    func deleteAllMessages() {
         let context = self.context
         let fetchRequest: NSFetchRequest<NSFetchRequestResult> = Messages.fetchRequest()
         let deleteRequest = NSBatchDeleteRequest(fetchRequest: fetchRequest)
