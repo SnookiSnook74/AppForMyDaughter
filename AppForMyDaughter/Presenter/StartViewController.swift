@@ -10,6 +10,7 @@ import UIKit
 class StartViewController: UIViewController, UITextFieldDelegate {
     
     var openAI: OpenAIServiceProtocol?
+    var voiceService: OpenAIVoiceServiceProtocol?
     
     let inputTextField: UITextField = {
         let textField = UITextField()
@@ -35,6 +36,7 @@ class StartViewController: UIViewController, UITextFieldDelegate {
         
         setupConstraints()
         
+      
         inputTextField.delegate = self
         sendButton.addTarget(self, action: #selector(sendButtonTapped), for: .touchUpInside)
     }
@@ -66,6 +68,7 @@ class StartViewController: UIViewController, UITextFieldDelegate {
                 if let result = try await openAI?.sendMessage(text: text) {
                     print("Request: \(text)")
                     print("Response: \(result)")
+                    try await voiceService?.speak(text:result)
                 }
             } catch {
                 print("Error: \(error.localizedDescription)")

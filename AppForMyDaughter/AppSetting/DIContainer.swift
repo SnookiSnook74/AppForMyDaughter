@@ -20,4 +20,12 @@ class DIContainer {
         let model: OpenAIChatService.GptModel = .gpt4o
         return OpenAIChatService(model: model, apiKey: apiKey, systemMessage: systemMessage)
     }
+    
+    func makeOpenAIVoice() -> OpenAIVoiceServiceProtocol {
+        guard let apiKey = Bundle.main.object(forInfoDictionaryKey: "OPENAI_API_KEY") as? String else {
+            fatalError("API Key not found")
+        }
+        return OpenAIVoiceService(apiKey: apiKey)
+    }
+    
 }

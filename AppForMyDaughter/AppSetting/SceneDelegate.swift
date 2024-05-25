@@ -24,6 +24,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         if let container = diContainer {
             startViewController.openAI = container.makeOpenAIService()
+            startViewController.voiceService = container.makeOpenAIVoice()
         }
         
         window.rootViewController = startViewController
