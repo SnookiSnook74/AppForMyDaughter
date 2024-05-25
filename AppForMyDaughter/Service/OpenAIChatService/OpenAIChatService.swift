@@ -36,9 +36,9 @@ class OpenAIChatService: OpenAIServiceProtocol {
         return urlRequset
     }
     
-    init(model: String, apiKey: String, systemMessage: String, historyList: [History]) {
+    init(model: GptModel, apiKey: String, systemMessage: String, historyList: [History]) {
         self.systemMessage = systemMessage
-        self.model = model
+        self.model = model.description
         self.apiKey = apiKey
         self.historyList = historyList
     }
@@ -150,6 +150,20 @@ extension OpenAIChatService {
         
         var errorDescription: String? {
             return description
+        }
+    }
+}
+
+extension OpenAIChatService {
+    
+    /// Виды моделей
+    enum GptModel: String {
+        case gpt4o = "gpt-4o"
+        case gpt4 = "gpt-4-turbo"
+        case gpt3_5 = "gpt-3.5-turbo-0125"
+        
+        var description: String {
+            return self.rawValue
         }
     }
 }
