@@ -67,7 +67,7 @@ class OpenAIChatService: OpenAIServiceProtocol {
             let jsonDecoder = try JSONDecoder().decode(OpenAIResponse.self, from: data)
             
             if let message = jsonDecoder.choices.first?.message.content {
-                historyList.append(History(role: "assistent", content: message))
+                historyList.append(History(role: "assistant", content: message))
                 return message
             } else {
                 throw OpenAIServiceError.messageEmpty
@@ -119,7 +119,7 @@ class OpenAIChatService: OpenAIServiceProtocol {
                             continuation.yield(text)
                         }
                     }
-                    historyList.append(History(role: "assistent", content: responseText))
+                    historyList.append(History(role: "assistant", content: responseText))
                     continuation.finish()
                 } catch {
                     continuation.finish(throwing: error)
