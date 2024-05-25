@@ -20,6 +20,7 @@
 		6BABB2472BFA3F95000AE01E /* OpenAIChatServiceModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BABB2462BFA3F95000AE01E /* OpenAIChatServiceModel.swift */; };
 		6BABB2492BFA42B2000AE01E /* OpenAIChatServiceTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BABB2482BFA42B2000AE01E /* OpenAIChatServiceTest.swift */; };
 		6BABB24B2BFA469E000AE01E /* MockUrlSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BABB24A2BFA469E000AE01E /* MockUrlSession.swift */; };
+		6BABB2512C02353C000AE01E /* DIContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BABB2502C02353C000AE01E /* DIContainer.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +50,7 @@
 		6BABB2462BFA3F95000AE01E /* OpenAIChatServiceModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenAIChatServiceModel.swift; sourceTree = "<group>"; };
 		6BABB2482BFA42B2000AE01E /* OpenAIChatServiceTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenAIChatServiceTest.swift; sourceTree = "<group>"; };
 		6BABB24A2BFA469E000AE01E /* MockUrlSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockUrlSession.swift; sourceTree = "<group>"; };
+		6BABB2502C02353C000AE01E /* DIContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DIContainer.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -89,6 +91,7 @@
 		6B06E7F92BF967B20059ACB0 /* AppForMyDaughter */ = {
 			isa = PBXGroup;
 			children = (
+				6BABB2522C023DBC000AE01E /* Configurations */,
 				6B06E82C2BF9EEAA0059ACB0 /* Service */,
 				6B06E8102BF96D9C0059ACB0 /* Presenter */,
 				6B06E8142BF9703F0059ACB0 /* Data */,
@@ -115,6 +118,7 @@
 			children = (
 				6B06E7FA2BF967B20059ACB0 /* AppDelegate.swift */,
 				6B06E7FC2BF967B20059ACB0 /* SceneDelegate.swift */,
+				6BABB2502C02353C000AE01E /* DIContainer.swift */,
 			);
 			path = AppSetting;
 			sourceTree = "<group>";
@@ -169,6 +173,13 @@
 				6BABB24A2BFA469E000AE01E /* MockUrlSession.swift */,
 			);
 			path = MockObject;
+			sourceTree = "<group>";
+		};
+		6BABB2522C023DBC000AE01E /* Configurations */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Configurations;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -277,6 +288,7 @@
 			files = (
 				6BABB24B2BFA469E000AE01E /* MockUrlSession.swift in Sources */,
 				6B06E7FF2BF967B20059ACB0 /* StartViewController.swift in Sources */,
+				6BABB2512C02353C000AE01E /* DIContainer.swift in Sources */,
 				6B06E82E2BF9EEEF0059ACB0 /* OpenAIChatService.swift in Sources */,
 				6B06E7FB2BF967B20059ACB0 /* AppDelegate.swift in Sources */,
 				6B06E8132BF96E690059ACB0 /* CoreDataModel.xcdatamodeld in Sources */,
