@@ -9,7 +9,7 @@ import UIKit
 
 class StartViewController: UIViewController, UITextFieldDelegate {
     
-    var openAI: OpenAIServiceProtocol?
+    var service: OpenAIChatService?
     
     let inputTextField: UITextField = {
         let textField = UITextField()
@@ -29,6 +29,8 @@ class StartViewController: UIViewController, UITextFieldDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .green
+        
+        service = OpenAIChatService(model: .gpt4o, apiKey: "Api", systemMessage: "Ты мой ассистент")
         
         view.addSubview(inputTextField)
         view.addSubview(sendButton)
@@ -63,7 +65,7 @@ class StartViewController: UIViewController, UITextFieldDelegate {
         Task {
             do {
                 print("Sending message: \(text)")
-                if let result = try await openAI?.sendMessage(text: text) {
+                if let result = try await service?.sendMessage(text: text) {
                     print("Request: \(text)")
                     print("Response: \(result)")
                 }

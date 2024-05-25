@@ -21,6 +21,8 @@
 		6BABB2492BFA42B2000AE01E /* OpenAIChatServiceTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BABB2482BFA42B2000AE01E /* OpenAIChatServiceTest.swift */; };
 		6BABB24B2BFA469E000AE01E /* MockUrlSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BABB24A2BFA469E000AE01E /* MockUrlSession.swift */; };
 		6BABB2512C02353C000AE01E /* DIContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BABB2502C02353C000AE01E /* DIContainer.swift */; };
+		6BABB2542C023E2B000AE01E /* Debug.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 6BABB2532C023E2B000AE01E /* Debug.xcconfig */; };
+		6BABB2562C023E50000AE01E /* Release.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 6BABB2552C023E50000AE01E /* Release.xcconfig */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,6 +53,8 @@
 		6BABB2482BFA42B2000AE01E /* OpenAIChatServiceTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenAIChatServiceTest.swift; sourceTree = "<group>"; };
 		6BABB24A2BFA469E000AE01E /* MockUrlSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockUrlSession.swift; sourceTree = "<group>"; };
 		6BABB2502C02353C000AE01E /* DIContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DIContainer.swift; sourceTree = "<group>"; };
+		6BABB2532C023E2B000AE01E /* Debug.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = Debug.xcconfig; sourceTree = "<group>"; };
+		6BABB2552C023E50000AE01E /* Release.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = Release.xcconfig; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -178,6 +182,8 @@
 		6BABB2522C023DBC000AE01E /* Configurations */ = {
 			isa = PBXGroup;
 			children = (
+				6BABB2552C023E50000AE01E /* Release.xcconfig */,
+				6BABB2532C023E2B000AE01E /* Debug.xcconfig */,
 			);
 			path = Configurations;
 			sourceTree = "<group>";
@@ -267,8 +273,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6BABB2562C023E50000AE01E /* Release.xcconfig in Resources */,
 				6B06E8042BF967B40059ACB0 /* Assets.xcassets in Resources */,
 				6B06E8072BF967B40059ACB0 /* Base in Resources */,
+				6BABB2542C023E2B000AE01E /* Debug.xcconfig in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -332,6 +340,7 @@
 /* Begin XCBuildConfiguration section */
 		6B06E8092BF967B40059ACB0 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6BABB2532C023E2B000AE01E /* Debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
@@ -395,6 +404,7 @@
 		};
 		6B06E80A2BF967B40059ACB0 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6BABB2552C023E50000AE01E /* Release.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
@@ -442,6 +452,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 17.5;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MTL_ENABLE_DEBUG_INFO = NO;
+				"MTL_ENABLE_DEBUG_INFO[arch=*]" = OPENAI_API_KEY;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
 				SWIFT_COMPILATION_MODE = wholemodule;
@@ -451,6 +462,7 @@
 		};
 		6B06E80C2BF967B40059ACB0 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6BABB2532C023E2B000AE01E /* Debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -482,6 +494,7 @@
 		};
 		6B06E80D2BF967B40059ACB0 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6BABB2552C023E50000AE01E /* Release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -513,6 +526,7 @@
 		};
 		6B06E8262BF975F10059ACB0 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6BABB2532C023E2B000AE01E /* Debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
@@ -531,6 +545,7 @@
 		};
 		6B06E8272BF975F10059ACB0 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6BABB2552C023E50000AE01E /* Release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
