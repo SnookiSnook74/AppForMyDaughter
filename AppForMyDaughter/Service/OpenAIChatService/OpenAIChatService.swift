@@ -25,7 +25,7 @@ class OpenAIChatService: OpenAIServiceProtocol {
     private let apiKey: String
     
     var urlSession = URLSession.shared
-    private var historyList:[History]
+    private var historyList:[History] = []
     
     var urlRequest: URLRequest {
         let url = URL(string: "https://api.openai.com/v1/chat/completions")!
@@ -36,11 +36,10 @@ class OpenAIChatService: OpenAIServiceProtocol {
         return urlRequset
     }
     
-    init(model: GptModel, apiKey: String, systemMessage: String, historyList: [History]) {
+    init(model: GptModel, apiKey: String, systemMessage: String) {
         self.systemMessage = systemMessage
         self.model = model.description
         self.apiKey = apiKey
-        self.historyList = historyList
     }
     
     func sendMessage(text: String) async throws -> String {
