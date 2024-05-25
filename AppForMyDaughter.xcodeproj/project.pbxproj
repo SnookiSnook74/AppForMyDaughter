@@ -187,6 +187,8 @@
 			dependencies = (
 			);
 			name = AppForMyDaughter;
+			packageProductDependencies = (
+			);
 			productName = AppForMyDaughter;
 			productReference = 6B06E7F72BF967B20059ACB0 /* AppForMyDaughter.app */;
 			productType = "com.apple.product-type.application";
@@ -237,6 +239,8 @@
 				Base,
 			);
 			mainGroup = 6B06E7EE2BF967B20059ACB0;
+			packageReferences = (
+			);
 			productRefGroup = 6B06E7F82BF967B20059ACB0 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";

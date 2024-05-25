@@ -18,7 +18,7 @@ class OpenAIChatServiceTests: XCTestCase {
         super.setUp()
         
         let historyList = [History(role: "system", content: "Hello!")]
-        service = OpenAIChatService(model: "gpt-3.5-turbo", apiKey: "testApiKey", systemMessage: "System message", historyList: historyList)
+        service = OpenAIChatService(model: .gpt3_5, apiKey: "testApiKey", systemMessage: "System message", historyList: historyList)
         
         let config = URLSessionConfiguration.ephemeral
         config.protocolClasses = [MockURLProtocol.self]
