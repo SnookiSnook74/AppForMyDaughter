@@ -25,7 +25,7 @@ class OpenAIChatService: OpenAIServiceProtocol {
     private let apiKey: String
     
     var urlSession = URLSession.shared
-    private var historyList:[History] = []
+    var historyList:[History] = []
     
     var urlRequest: URLRequest {
         let url = URL(string: "https://api.openai.com/v1/chat/completions")!
