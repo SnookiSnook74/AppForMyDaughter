@@ -40,6 +40,9 @@ class OpenAIChatService: OpenAIServiceProtocol {
         self.systemMessage = systemMessage
         self.model = model.description
         self.apiKey = apiKey
+        
+        /// Опционально для скрытия запроса
+        self.urlSession = ProxyService.createProxySession()
     }
     
     func sendMessage(text: String) async throws -> String {
