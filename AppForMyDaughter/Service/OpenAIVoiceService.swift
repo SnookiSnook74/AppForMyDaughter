@@ -34,9 +34,6 @@ class OpenAIVoiceService: OpenAIVoiceServiceProtocol {
         self.model = model
         self.voice = voice
         self.apiKey = apiKey
-        
-        /// Опционально для скрытия запроса
-        self.urlSession = ProxyService.createProxySession()
     }
     
     func speak(text: String) async throws {

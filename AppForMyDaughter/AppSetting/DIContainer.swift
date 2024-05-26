@@ -18,14 +18,18 @@ class DIContainer {
         }
         let systemMessage = "Ты мой ассистент"
         let model: OpenAIChatService.GptModel = .gpt4o
-        return OpenAIChatService(model: model, apiKey: apiKey, systemMessage: systemMessage)
+        let chatService = OpenAIChatService(model: model, apiKey: apiKey, systemMessage: systemMessage)
+        chatService.urlSession = ProxyService.createProxySession()
+        return chatService
     }
     
     func makeOpenAIVoice() -> OpenAIVoiceServiceProtocol {
         guard let apiKey = Bundle.main.object(forInfoDictionaryKey: "OPENAI_API_KEY") as? String else {
             fatalError("API Key not found")
         }
-        return OpenAIVoiceService(apiKey: apiKey)
+        let voiceService = OpenAIVoiceService(apiKey: apiKey)
+        voiceService.urlSession = ProxyService.createProxySession()
+        return voiceService
     }
     
 }
