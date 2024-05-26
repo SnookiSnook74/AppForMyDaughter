@@ -21,7 +21,7 @@ protocol OpenAIServiceProtocol {
 class OpenAIChatService: OpenAIServiceProtocol {
     
     private let systemMessage: String
-    private let model: String
+    private let model: GptModel
     private let apiKey: String
     
     var urlSession = URLSession.shared
@@ -38,7 +38,7 @@ class OpenAIChatService: OpenAIServiceProtocol {
     
     init(model: GptModel, apiKey: String, systemMessage: String) {
         self.systemMessage = systemMessage
-        self.model = model.description
+        self.model = model
         self.apiKey = apiKey
     }
     
@@ -47,7 +47,7 @@ class OpenAIChatService: OpenAIServiceProtocol {
         historyList.append(History(role: "user", content: text))
         
         let requestBody: [String: Any] = [
-            "model": model,
+            "model": model.description,
             "messages": historyList.map { ["role": $0.role, "content": $0.content] }
         ]
         

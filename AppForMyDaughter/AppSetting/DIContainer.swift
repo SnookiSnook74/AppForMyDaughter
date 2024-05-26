@@ -17,8 +17,7 @@ class DIContainer {
             fatalError("API Key not found")
         }
         let systemMessage = "Ты мой ассистент"
-        let model: OpenAIChatService.GptModel = .gpt4o
-        let chatService = OpenAIChatService(model: model, apiKey: apiKey, systemMessage: systemMessage)
+        let chatService = OpenAIChatService(model: .gpt4o, apiKey: apiKey, systemMessage: systemMessage)
         chatService.urlSession = ProxyService.createProxySession()
         return chatService
     }
@@ -27,7 +26,7 @@ class DIContainer {
         guard let apiKey = Bundle.main.object(forInfoDictionaryKey: "OPENAI_API_KEY") as? String else {
             fatalError("API Key not found")
         }
-        let voiceService = OpenAIVoiceService(apiKey: apiKey)
+        let voiceService = OpenAIVoiceService(voice: .shimmer, apiKey: apiKey)
         voiceService.urlSession = ProxyService.createProxySession()
         return voiceService
     }
