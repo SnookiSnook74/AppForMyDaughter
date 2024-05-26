@@ -83,7 +83,7 @@ class OpenAIChatService: OpenAIServiceProtocol {
         historyList.append(History(role: "user", content: text))
         
         let requestBody: [String: Any] = [
-            "model": model,
+            "model": model.description,
             "messages": historyList.map { ["role": $0.role, "content": $0.content] },
             "stream": true
         ]
