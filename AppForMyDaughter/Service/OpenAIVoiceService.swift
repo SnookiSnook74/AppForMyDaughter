@@ -17,7 +17,7 @@ class OpenAIVoiceService: OpenAIVoiceServiceProtocol {
     var urlSession = URLSession.shared
     
     private let model: String
-    private let voice: String
+    private let voice: Voice
     private let apiKey: String
     private var audioPlayer: AVAudioPlayer?
     
@@ -30,7 +30,7 @@ class OpenAIVoiceService: OpenAIVoiceServiceProtocol {
         return urlRequest
     }
     
-    init(model: String = "tts-1", voice: String = "alloy", apiKey: String) {
+    init(model: String = "tts-1", voice: Voice, apiKey: String) {
         self.model = model
         self.voice = voice
         self.apiKey = apiKey
@@ -41,19 +41,27 @@ class OpenAIVoiceService: OpenAIVoiceServiceProtocol {
         let requestBody: [String: Any] = [
             "model": model,
             "input": text,
-            "voice": voice
+            "voice": voice.rawValue
         ]
         
         guard let jsonData = try? JSONSerialization.data(withJSONObject: requestBody) else {
-            fatalError("Ошибка серилизации")
+            throw OpenAIVoiceServiceError.serializationError
         }
         
         var request = urlRequest
         request.httpBody = jsonData
         
-        let (data, _) = try await urlSession.data(for: request)
-        
-        try playAudio(data: data)
+        do {
+            let (data, response) = try await urlSession.data(for: request)
+            
+            guard let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode == 200 else {
+                throw OpenAIVoiceServiceError.invalidResponse
+            }
+            
+            try playAudio(data: data)
+        } catch {
+            throw OpenAIVoiceServiceError.networkError(error)
+        }
     }
     
     private func playAudio(data: Data) throws {
@@ -65,8 +73,49 @@ class OpenAIVoiceService: OpenAIVoiceServiceProtocol {
             audioPlayer?.prepareToPlay()
             audioPlayer?.play()
         } catch {
-            print("Ошибка воспроизведения аудио: \(error.localizedDescription)")
-            throw error
+            throw OpenAIVoiceServiceError.audioPlaybackError(error)
         }
     }
 }
+
+extension OpenAIVoiceService {
+    
+    /// Ошибки связанные с OpenAIVoiceService
+    enum OpenAIVoiceServiceError: LocalizedError, CustomStringConvertible  {
+        case serializationError
+        case networkError(Error)
+        case invalidResponse
+        case audioPlaybackError(Error)
+        
+        var description: String {
+            switch self {
+            case .serializationError:
+                return "Ошибка серилизации данных."
+            case .networkError(let error):
+                return "Ошибка сети: \(error.localizedDescription)"
+            case .invalidResponse:
+                return "Неверный ответ сервера."
+            case .audioPlaybackError(let error):
+                return "Ошибка воспроизведения аудио: \(error.localizedDescription)"
+            }
+        }
+        
+        var errorDescription: String? {
+            return description
+        }
+    }
+}
+
+extension OpenAIVoiceService {
+    
+    /// Список голосов
+    enum Voice: String {
+        case alloy
+        case echo
+        case fable
+        case onyx
+        case nova
+        case shimmer
+    }
+}
+
