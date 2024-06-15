@@ -18,13 +18,16 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         let window = UIWindow(windowScene: windowScene)
         
+        // Инициализируем и регистрируем зависимости в контейнере
         diContainer = DIContainer.shared
+        diContainer?.registerServices()
         
         let startViewController = StartViewController()
         
+        // Разрешаем зависимости
         if let container = diContainer {
-            startViewController.openAI = container.makeOpenAIService()
-            startViewController.voiceService = container.makeOpenAIVoice()
+            startViewController.openAI = container.resolve(OpenAIServiceProtocol.self)
+            startViewController.voiceService = container.resolve(OpenAIVoiceServiceProtocol.self)
         }
         
         window.rootViewController = startViewController

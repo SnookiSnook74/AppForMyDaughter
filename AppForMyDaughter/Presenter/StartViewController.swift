@@ -63,21 +63,27 @@ class StartViewController: UIViewController, UITextFieldDelegate {
     
     private func sendMessage(_ text: String) {
         Task {
-            do {
-                print("Sending message: \(text)")
-                if let result = try await openAI?.sendMessage(text: text) {
-                    print("Request: \(text)")
-                    print("Response: \(result)")
-                    try await voiceService?.speak(text:result)
+            guard let stream = try await openAI?.sendMessageWithStream(text: text) else { return }
+            
+            var accumulatedText = ""
+            
+            for try await chunk in stream {
+                accumulatedText += chunk
+                
+                // Проверяем, содержит ли накопленный текст знак окончания предложения
+                if accumulatedText.contains(where: { ".!?".contains($0) }) {
+                    try await voiceService?.speak(text: accumulatedText)
+                    accumulatedText = ""
                 }
-            } catch {
-                print("Error: \(error.localizedDescription)")
-                showErrorAlert(error.localizedDescription)
+            }
+            
+            // Отправка оставшегося текста, если таковой имеется
+            if !accumulatedText.isEmpty {
+                try await voiceService?.speak(text: accumulatedText)
             }
         }
     }
-    
-    
+
     private func showErrorAlert(_ error: String) {
         let alertController = UIAlertController(title: "Error", message: error, preferredStyle: .alert)
         let okAction = UIAlertAction(title: "OK", style: .default)
