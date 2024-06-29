@@ -11,10 +11,16 @@ import Foundation
 /// Протокол для сервиса сообщений OpenAI
 protocol OpenAIServiceProtocol {
     
-    /// Отправка не стриминоговых сообщений
+    /// Метод для обработки текста пользователя
+    /// - Parameter text: запрос пользователя к OpenAI.
+    /// - Throws: Ошибка сети или ошибки, связанные с обработкой ответа.
+    /// - Returns: Ответ от сервера OpenAI.
     func sendMessage(text: String) async throws -> String
     
-    /// Отправка сообщений в режиме стриминга
+    /// Метод для стриминговой обработки текста пользователя
+    /// - Parameter text: запрос пользователя к OpenAI.
+    /// - Throws: Ошибка сети или ошибки, связанные с обработкой ответа.
+    /// - Returns: Ответ от сервера OpenAI в режиме стриминга (ответ приходит по частям).
     func sendMessageWithStream(text: String) async throws -> AsyncThrowingStream<String, Error>
 }
 

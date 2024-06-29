@@ -8,7 +8,12 @@
 import Foundation
 import AVFoundation
 
+/// Протокол сервиса для озвучивания текста
 protocol OpenAIVoiceServiceProtocol {
+    
+    /// Метод для озвучивания текста
+    /// - Parameter text: Текст который необходимо озучить.
+    /// - Throws: Ошибка сети или ошибки, связанные с обработкой ответа.
     func speak(text: String) async throws
 }
 

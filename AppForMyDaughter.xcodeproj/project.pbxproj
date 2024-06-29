@@ -29,6 +29,8 @@
 		6BABB2542C023E2B000AE01E /* Debug.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 6BABB2532C023E2B000AE01E /* Debug.xcconfig */; };
 		6BABB2562C023E50000AE01E /* Release.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 6BABB2552C023E50000AE01E /* Release.xcconfig */; };
 		6BABB2592C02676C000AE01E /* OpenAIVoiceService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BABB2582C02676C000AE01E /* OpenAIVoiceService.swift */; };
+		6BBE0BDA2C30754C008770D5 /* OpenAIAudioToTextService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BBE0BD92C30754C008770D5 /* OpenAIAudioToTextService.swift */; };
+		6BBE0BDD2C308276008770D5 /* OpenAIAudioToTextServiceUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BBE0BDC2C308276008770D5 /* OpenAIAudioToTextServiceUseCase.swift */; };
 		6BE90A5D2C033F0A0085483F /* ProxyService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BE90A5C2C033F0A0085483F /* ProxyService.swift */; };
 /* End PBXBuildFile section */
 
@@ -68,6 +70,8 @@
 		6BABB2532C023E2B000AE01E /* Debug.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = Debug.xcconfig; sourceTree = "<group>"; };
 		6BABB2552C023E50000AE01E /* Release.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = Release.xcconfig; sourceTree = "<group>"; };
 		6BABB2582C02676C000AE01E /* OpenAIVoiceService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenAIVoiceService.swift; sourceTree = "<group>"; };
+		6BBE0BD92C30754C008770D5 /* OpenAIAudioToTextService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenAIAudioToTextService.swift; sourceTree = "<group>"; };
+		6BBE0BDC2C308276008770D5 /* OpenAIAudioToTextServiceUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenAIAudioToTextServiceUseCase.swift; sourceTree = "<group>"; };
 		6BE90A5C2C033F0A0085483F /* ProxyService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProxyService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -173,6 +177,7 @@
 		6B06E82C2BF9EEAA0059ACB0 /* Service */ = {
 			isa = PBXGroup;
 			children = (
+				6BBE0BDB2C307B12008770D5 /* OpenAIAudioToTextService */,
 				6BABB2572C02674C000AE01E /* OpenAIVoiceService */,
 				6BABB2452BFA3F51000AE01E /* OpenAIChatService */,
 				6BE90A5C2C033F0A0085483F /* ProxyService.swift */,
@@ -184,6 +189,7 @@
 		6B5FC8AE2C3043E000262AE0 /* Domain */ = {
 			isa = PBXGroup;
 			children = (
+				6BBE0BDC2C308276008770D5 /* OpenAIAudioToTextServiceUseCase.swift */,
 				6B5FC8AF2C30441300262AE0 /* OpenAIVoiceUseCase.swift */,
 				6B5FC8B12C304D8000262AE0 /* OpenAIChatUseCase.swift */,
 				6B5FC8B52C305F3B00262AE0 /* DomainLayerAssebler.swift */,
@@ -223,6 +229,14 @@
 				6BABB2582C02676C000AE01E /* OpenAIVoiceService.swift */,
 			);
 			name = OpenAIVoiceService;
+			sourceTree = "<group>";
+		};
+		6BBE0BDB2C307B12008770D5 /* OpenAIAudioToTextService */ = {
+			isa = PBXGroup;
+			children = (
+				6BBE0BD92C30754C008770D5 /* OpenAIAudioToTextService.swift */,
+			);
+			path = OpenAIAudioToTextService;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -331,6 +345,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6BBE0BDD2C308276008770D5 /* OpenAIAudioToTextServiceUseCase.swift in Sources */,
 				6BABB24B2BFA469E000AE01E /* MockUrlSession.swift in Sources */,
 				6B5BCF582C1F4126008B4E82 /* StartViewModel.swift in Sources */,
 				6B06E7FF2BF967B20059ACB0 /* StartView.swift in Sources */,
@@ -347,6 +362,7 @@
 				6BE90A5D2C033F0A0085483F /* ProxyService.swift in Sources */,
 				6B5FC8B82C30604B00262AE0 /* PresenterLayerAssembler.swift in Sources */,
 				6BABB2472BFA3F95000AE01E /* OpenAIChatServiceModel.swift in Sources */,
+				6BBE0BDA2C30754C008770D5 /* OpenAIAudioToTextService.swift in Sources */,
 				6B06E81A2BF971ED0059ACB0 /* Messages+CoreDataProperties.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

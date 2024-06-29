@@ -7,7 +7,7 @@
 
 import Foundation
 
-
+/// Класс для регистрации всех зависимостей в приложении
 class DIContainer {
     
     static let shared = DIContainer()
