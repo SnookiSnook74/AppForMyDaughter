@@ -7,7 +7,7 @@
 
 import Foundation
 
-// Сборщик зависимостей доменного слоя
+/// Сборщик зависимостей доменного слоя
 class DomainLayerAssebler {
     
    func registerUseCases(in container: DIContainer) {
@@ -24,5 +24,12 @@ class DomainLayerAssebler {
             }
             return OpenAIChatUseCase(chatService: chatService)
         }
+       
+       container.register(OpenAIAudioToTextServiceUseCase.self) {
+           guard let transcription = container.resolve(OpenAIAudioToTextServiceProtocol.self) else {
+               fatalError("OpenAIAudioToTextService не зарегистрирован")
+           }
+           return OpenAIAudioToTextServiceUseCase(transcriptionService: transcription)
+       }
     }
 }

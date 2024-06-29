@@ -7,7 +7,7 @@
 
 import Foundation
 
-// Сборщик зависимостей презентационного слоя
+/// Сборщик зависимостей презентационного слоя
 class PresenterLayerAssembler {
     
     func registerViewModels(in container: DIContainer) {

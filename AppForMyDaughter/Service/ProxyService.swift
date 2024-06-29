@@ -7,6 +7,7 @@
 
 import Foundation
 
+/// Сервис для проксирования запроса
 struct ProxyService {
     
     static func createProxySession() -> URLSession {

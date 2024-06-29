@@ -7,7 +7,7 @@
 
 import Foundation
 
-// Сборщик зависимостей сервисного слоя
+/// Сборщик зависимостей сервисного слоя
 class ServiceLayerAssembler {
     
     func registerServices(in container: DIContainer) {
@@ -29,6 +29,15 @@ class ServiceLayerAssembler {
             let voiceService = OpenAIVoiceService(voice: .shimmer, apiKey: apiKey)
             voiceService.urlSession = ProxyService.createProxySession()
             return voiceService
+        }
+        
+        container.register(OpenAIAudioToTextServiceProtocol.self) {
+            guard let apiKey = Bundle.main.object(forInfoDictionaryKey: "OPENAI_API_KEY") as? String else {
+                fatalError("API Key not found")
+            }
+            let transcriptionService = OpenAIAudioToTextService(apiKey: apiKey)
+            transcriptionService.urlSession = ProxyService.createProxySession()
+            return transcriptionService
         }
     }
     
