@@ -8,18 +8,17 @@
 import Foundation
 import Observation
 
-@MainActor
 class StartViewModel: ObservableObject {
     @Published var inputText: String = ""
     @Published var showAlert: Bool = false
     @Published var alertMessage: String = ""
 
-    var openAI: OpenAIServiceProtocol
-    var voiceService: OpenAIVoiceServiceProtocol?
+    private let chatAIUseCase: OpenAIChatUseCase
+    private let voiceUseCase: OpenAIVoiceUseCase
 
-    init(openAI: OpenAIServiceProtocol, voiceService: OpenAIVoiceServiceProtocol?) {
-        self.openAI = openAI
-        self.voiceService = voiceService
+    init(chatAIUseCase: OpenAIChatUseCase, voiceUseCase: OpenAIVoiceUseCase) {
+        self.chatAIUseCase = chatAIUseCase
+        self.voiceUseCase = voiceUseCase
     }
 
     func sendButtonTapped() {
@@ -31,7 +30,7 @@ class StartViewModel: ObservableObject {
     private func sendMessage(_ text: String) {
         Task {
             do {
-                let stream = try await openAI.sendMessageWithStream(text: text)
+                let stream = try await chatAIUseCase.sendStream(text: text)
                 
                 var accumulatedText = ""
                 
@@ -40,14 +39,14 @@ class StartViewModel: ObservableObject {
                     accumulatedText += chunk
                     
                     if accumulatedText.contains(where: { ".!?".contains($0) }) {
-                        try await voiceService?.speak(text: accumulatedText)
+                        try await voiceUseCase.speak(text: accumulatedText)
                         accumulatedText = ""
                     }
                 }
                 
                 if !accumulatedText.isEmpty {
                     print("Final accumulated text: \(accumulatedText)")
-                    try await voiceService?.speak(text: accumulatedText)
+                    try await voiceUseCase.speak(text: text)
                 }
             } catch {
                 print("Error: \(error.localizedDescription)")
