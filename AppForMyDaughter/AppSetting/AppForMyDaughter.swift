@@ -13,14 +13,14 @@ struct AppForMyDaughterApp: App {
     @StateObject private var startViewModel: StartViewModel
 
     init() {
-        DIContainer.shared.registerServices()
+        DIContainer.shared.registerAllDependencies()
         
-        let openAIService = DIContainer.shared.resolve(OpenAIServiceProtocol.self)!
-        let voiceService = DIContainer.shared.resolve(OpenAIVoiceServiceProtocol.self)
+        guard let startViewModel = DIContainer.shared.resolve(StartViewModel.self) else {
+            fatalError("StartViewModel не зарегистрирован в DIContainer")
+        }
         
-        _startViewModel = StateObject(wrappedValue: StartViewModel(
-            openAI: openAIService,
-            voiceService: voiceService))
+        _startViewModel = StateObject(wrappedValue: startViewModel)
+
     }
 
     var body: some Scene {

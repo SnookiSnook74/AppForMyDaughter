@@ -29,6 +29,8 @@ struct OpenAIResponse: Codable {
 
 /// Структура для храненения стримингового ответа
 struct ChatCompletionChunk: Codable {
+    let choices: [Choice]
+    
     struct Choice: Codable {
         let delta: Delta
         
@@ -36,5 +38,4 @@ struct ChatCompletionChunk: Codable {
             let content: String?
         }
     }
-    let choices: [Choice]
 }
