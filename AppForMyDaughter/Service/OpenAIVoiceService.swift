@@ -18,9 +18,7 @@ protocol OpenAIVoiceServiceProtocol {
 }
 
 class OpenAIVoiceService: NSObject, OpenAIVoiceServiceProtocol, AVAudioPlayerDelegate {
-
-    var urlSession = URLSession.shared
-
+    
     private let model: String
     private let voice: Voice
     private let apiKey: String
@@ -60,20 +58,11 @@ class OpenAIVoiceService: NSObject, OpenAIVoiceServiceProtocol, AVAudioPlayerDel
 
             var request = urlRequest
             request.httpBody = jsonData
-
-            do {
-                let (data, response) = try await urlSession.data(for: request)
-
-                guard let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode == 200 else {
-                    throw OpenAIVoiceServiceError.invalidResponse
-                }
-
-                audioQueue.append(data)
-                if !isPlaying {
-                    playNextAudio()
-                }
-            } catch {
-                throw OpenAIVoiceServiceError.networkError(error)
+            
+            var data: Data = try await NetworkService.shared.sendRequest(request)
+            audioQueue.append(data)
+            if !isPlaying {
+                playNextAudio()
             }
         }
     }
@@ -111,7 +100,6 @@ extension OpenAIVoiceService {
     /// Ошибки связанные с OpenAIVoiceService
     enum OpenAIVoiceServiceError: LocalizedError, CustomStringConvertible  {
         case serializationError
-        case networkError(Error)
         case invalidResponse
         case audioPlaybackError(Error)
 
@@ -119,8 +107,6 @@ extension OpenAIVoiceService {
             switch self {
             case .serializationError:
                 return "Ошибка серилизации данных."
-            case .networkError(let error):
-                return "Ошибка сети: \(error.localizedDescription)"
             case .invalidResponse:
                 return "Неверный ответ сервера."
             case .audioPlaybackError(let error):

@@ -30,7 +30,6 @@ class OpenAIChatService: OpenAIServiceProtocol {
     private let model: GptModel
     private let apiKey: String
     
-    var urlSession = URLSession.shared
     var historyList:[History] = []
     
     var urlRequest: URLRequest {
@@ -49,7 +48,6 @@ class OpenAIChatService: OpenAIServiceProtocol {
     }
     
     func sendMessage(text: String) async throws -> String {
-        
         historyList.append(History(role: "user", content: text))
         
         let requestBody: [String: Any] = [
@@ -57,29 +55,16 @@ class OpenAIChatService: OpenAIServiceProtocol {
             "messages": historyList.map { ["role": $0.role, "content": $0.content] }
         ]
         
-        do {
-            let jsonData = try JSONSerialization.data(withJSONObject: requestBody)
-            
-            var requset = urlRequest
-            requset.httpBody = jsonData
-            
-            let (data, response) =  try await urlSession.data(for: requset)
-            
-            guard let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode == 200 else {
-                throw OpenAIServiceError.httpResponseError((response as? HTTPURLResponse)?.statusCode ?? -1)
-            }
-            
-            let jsonDecoder = try JSONDecoder().decode(OpenAIResponse.self, from: data)
-            
-            if let message = jsonDecoder.choices.first?.message.content {
-                historyList.append(History(role: "assistant", content: message))
-                return message
-            } else {
-                throw OpenAIServiceError.messageEmpty
-            }
-            
-        } catch {
-            throw OpenAIServiceError.serializationError(error.localizedDescription)
+        var request = urlRequest
+        request.httpBody = try JSONSerialization.data(withJSONObject: requestBody)
+        
+        let response: OpenAIResponse = try await NetworkService.shared.sendRequest(request, decodingType: OpenAIResponse.self)
+        
+        if let message = response.choices.first?.message.content {
+            historyList.append(History(role: "assistant", content: message))
+            return message
+        } else {
+            throw OpenAIServiceError.messageEmpty
         }
     }
     
@@ -96,19 +81,7 @@ class OpenAIChatService: OpenAIServiceProtocol {
         
         request.httpBody = try JSONSerialization.data(withJSONObject: requestBody)
         
-        let (result, response) = try await urlSession.bytes(for: request)
-        
-        guard let httpResponse = response as? HTTPURLResponse else {
-            throw OpenAIServiceError.httpResponseError(-1)
-        }
-        
-        guard 200...299 ~= httpResponse.statusCode else {
-            var errorText = ""
-            for try await line in result.lines {
-                errorText += line
-            }
-            throw OpenAIServiceError.httpResponseError(httpResponse.statusCode)
-        }
+        let (result, _) = try await NetworkService.shared.sendRequestForStream(request)
         
         return AsyncThrowingStream { continuation in
             Task {
@@ -139,15 +112,12 @@ extension OpenAIChatService {
     
     enum OpenAIServiceError: LocalizedError, CustomStringConvertible {
         case serializationError(String)
-        case httpResponseError(Int)
         case messageEmpty
         
         var description: String {
             switch self {
             case .serializationError(let messages):
                 return "Ошибка в Serialization \(messages)"
-            case .httpResponseError(let statusCode):
-                return "Ошибка в ответе от сервера \(statusCode)"
             case .messageEmpty:
                 return "Пришло пустое сообщение или ответ не пришел вовсе"
             }

@@ -65,11 +65,7 @@ class OpenAIAudioToTextService: NSObject, OpenAIAudioToTextServiceProtocol {
         request.httpBody = body as Data
 
         do {
-            let (data, response) = try await urlSession.data(for: request)
-            
-            guard let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode == 200 else {
-                throw OpenAIAudioToTextServiceError.invalidResponse
-            }
+            let data: Data = try await NetworkService.shared.sendRequest(request)
             
             guard let responseData = try? JSONSerialization.jsonObject(with: data, options: []) as? [String: Any],
                   let text = responseData["text"] as? String else {
