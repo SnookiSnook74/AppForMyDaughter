@@ -59,7 +59,7 @@ class OpenAIVoiceService: NSObject, OpenAIVoiceServiceProtocol, AVAudioPlayerDel
             var request = urlRequest
             request.httpBody = jsonData
             
-            var data: Data = try await NetworkService.shared.sendRequest(request)
+            let data: Data = try await NetworkService.shared.sendRequest(request)
             audioQueue.append(data)
             if !isPlaying {
                 playNextAudio()
