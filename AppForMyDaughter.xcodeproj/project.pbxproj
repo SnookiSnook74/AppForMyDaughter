@@ -15,6 +15,7 @@
 		6B06E81A2BF971ED0059ACB0 /* Messages+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B06E8182BF971ED0059ACB0 /* Messages+CoreDataProperties.swift */; };
 		6B06E8292BF9DAF20059ACB0 /* CoreDataManagerTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B06E8282BF9DAF20059ACB0 /* CoreDataManagerTest.swift */; };
 		6B06E82E2BF9EEEF0059ACB0 /* OpenAIChatService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B06E82D2BF9EEEF0059ACB0 /* OpenAIChatService.swift */; };
+		6B1CCA252C96CF64007924BC /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B1CCA242C96CF64007924BC /* NetworkService.swift */; };
 		6B5BCF562C1EB8EC008B4E82 /* AppForMyDaughter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B5BCF552C1EB8EC008B4E82 /* AppForMyDaughter.swift */; };
 		6B5BCF582C1F4126008B4E82 /* StartViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B5BCF572C1F4126008B4E82 /* StartViewModel.swift */; };
 		6B5FC8B02C30441300262AE0 /* OpenAIVoiceUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B5FC8AF2C30441300262AE0 /* OpenAIVoiceUseCase.swift */; };
@@ -56,6 +57,7 @@
 		6B06E81F2BF975F00059ACB0 /* AppTest.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AppTest.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		6B06E8282BF9DAF20059ACB0 /* CoreDataManagerTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManagerTest.swift; sourceTree = "<group>"; };
 		6B06E82D2BF9EEEF0059ACB0 /* OpenAIChatService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenAIChatService.swift; sourceTree = "<group>"; };
+		6B1CCA242C96CF64007924BC /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
 		6B5BCF552C1EB8EC008B4E82 /* AppForMyDaughter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppForMyDaughter.swift; sourceTree = "<group>"; };
 		6B5BCF572C1F4126008B4E82 /* StartViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartViewModel.swift; sourceTree = "<group>"; };
 		6B5FC8AF2C30441300262AE0 /* OpenAIVoiceUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenAIVoiceUseCase.swift; sourceTree = "<group>"; };
@@ -118,7 +120,7 @@
 				6B06E8102BF96D9C0059ACB0 /* Presenter */,
 				6B06E8142BF9703F0059ACB0 /* Data */,
 				6B5FC8AE2C3043E000262AE0 /* Domain */,
-				6B06E80F2BF96D680059ACB0 /* AppSetting */,
+				6B06E80F2BF96D680059ACB0 /* Application */,
 				6B06E80E2BF96B750059ACB0 /* Other */,
 				6B06E8202BF975F10059ACB0 /* AppTest */,
 				6B06E8112BF96E690059ACB0 /* CoreDataModel.xcdatamodeld */,
@@ -136,13 +138,13 @@
 			path = Other;
 			sourceTree = "<group>";
 		};
-		6B06E80F2BF96D680059ACB0 /* AppSetting */ = {
+		6B06E80F2BF96D680059ACB0 /* Application */ = {
 			isa = PBXGroup;
 			children = (
 				6BABB2502C02353C000AE01E /* DIContainer.swift */,
 				6B5BCF552C1EB8EC008B4E82 /* AppForMyDaughter.swift */,
 			);
-			path = AppSetting;
+			path = Application;
 			sourceTree = "<group>";
 		};
 		6B06E8102BF96D9C0059ACB0 /* Presenter */ = {
@@ -177,13 +179,22 @@
 		6B06E82C2BF9EEAA0059ACB0 /* Service */ = {
 			isa = PBXGroup;
 			children = (
+				6B1CCA232C96CF4A007924BC /* Network Service */,
 				6BBE0BDB2C307B12008770D5 /* OpenAIAudioToTextService */,
 				6BABB2572C02674C000AE01E /* OpenAIVoiceService */,
 				6BABB2452BFA3F51000AE01E /* OpenAIChatService */,
-				6BE90A5C2C033F0A0085483F /* ProxyService.swift */,
 				6B5FC8B32C305E0D00262AE0 /* ServiceLayerAssembler.swift */,
 			);
 			path = Service;
+			sourceTree = "<group>";
+		};
+		6B1CCA232C96CF4A007924BC /* Network Service */ = {
+			isa = PBXGroup;
+			children = (
+				6BE90A5C2C033F0A0085483F /* ProxyService.swift */,
+				6B1CCA242C96CF64007924BC /* NetworkService.swift */,
+			);
+			path = "Network Service";
 			sourceTree = "<group>";
 		};
 		6B5FC8AE2C3043E000262AE0 /* Domain */ = {
@@ -360,6 +371,7 @@
 				6B5BCF562C1EB8EC008B4E82 /* AppForMyDaughter.swift in Sources */,
 				6B06E8162BF9704E0059ACB0 /* CoreDataManager.swift in Sources */,
 				6BE90A5D2C033F0A0085483F /* ProxyService.swift in Sources */,
+				6B1CCA252C96CF64007924BC /* NetworkService.swift in Sources */,
 				6B5FC8B82C30604B00262AE0 /* PresenterLayerAssembler.swift in Sources */,
 				6BABB2472BFA3F95000AE01E /* OpenAIChatServiceModel.swift in Sources */,
 				6BBE0BDA2C30754C008770D5 /* OpenAIAudioToTextService.swift in Sources */,
